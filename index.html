@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GTA 6 Countdown</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000;
+      color: #00ffcc;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    #countdown {
+      font-size: 36px;
+      margin-top: 20px;
+    }
+    .label {
+      font-size: 18px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Countdown to GTA 6</h1>
+  <div id="countdown"></div>
+  <div class="label">Release Date: May 26, 2026 at 12:00 PM</div>
+
+  <script>
+    const releaseDate = new Date("May 26, 2026 12:00:00").getTime();
+
+    const countdownElement = document.getElementById("countdown");
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = releaseDate - now;
+
+      if (distance <= 0) {
+        countdownElement.innerHTML = "🎮 GTA 6 is OUT NOW!";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownElement.innerHTML = `
+        ${days}d ${hours}h ${minutes}m ${seconds}s
+      `;
+    };
+
+    updateCountdown(); // initial call
+    const timer = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
